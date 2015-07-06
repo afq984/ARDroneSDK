@@ -8,7 +8,7 @@
 #include "control_states.h"
 
 /* Initialization local variables before event loop  */
-inline C_RESULT demo_navdata_client_init( void* data )
+C_RESULT demo_navdata_client_init( void* data )
 {
   return C_OK;
 }
@@ -50,7 +50,7 @@ const char* ctrl_state_str(uint32_t ctrl_state)
 }
 
 /* Receving navdata during the event loop */
-inline C_RESULT demo_navdata_client_process( const navdata_unpacked_t* const navdata )
+C_RESULT demo_navdata_client_process( const navdata_unpacked_t* const navdata )
 {
 	static int cpt=0;
 
@@ -106,7 +106,7 @@ inline C_RESULT demo_navdata_client_process( const navdata_unpacked_t* const nav
 }
 
 /* Relinquish the local resources after the event loop exit */
-inline C_RESULT demo_navdata_client_release( void )
+C_RESULT demo_navdata_client_release( void )
 {
   return C_OK;
 }
