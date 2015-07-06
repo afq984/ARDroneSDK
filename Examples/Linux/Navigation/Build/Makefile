@@ -60,7 +60,7 @@ GENERIC_BINARIES_COMMON_SOURCE_FILES+=			\
 ifeq ($(PC_USE_POLARIS),yes)
   	GENERIC_CFLAGS+=-DPC_USE_POLARIS
  	GENERIC_BINARIES_COMMON_SOURCE_FILES+=			\
-		$(NDC_SRC_PATH)/navdata_polaris.c		
+		$(NDC_SRC_PATH)/navdata_polaris.c
 endif
 
 ifeq ($(USE_ARDRONE_VICON),yes)
@@ -69,7 +69,7 @@ GENERIC_BINARIES_COMMON_SOURCE_FILES+=			\
 	$(VC_SRC_PATH)/vicon_ihm.c
 endif
 
-#ifeq ($(USE_RAW_CAPTURE),yes)	
+#ifeq ($(USE_RAW_CAPTURE),yes)
 #GENERIC_BINARIES_COMMON_SOURCE_FILES+=			\
 #    $(NDC_SRC_PATH)/raw_capture.c
 #endif
@@ -128,7 +128,7 @@ endif
 
 GENERIC_LIB_PATHS=-L$(GENERIC_TARGET_BINARIES_DIR)
 GENERIC_CFLAGS+=-DLIBUDEV_I_KNOW_THE_API_IS_SUBJECT_TO_CHANGE
-GENERIC_LIBS+=-liw -lpc_ardrone -lgthread-2.0 -lgtk-x11-2.0 -lrt -lxml2 -ludev -lswscale -lSDL
+GENERIC_LIBS+=-liw -lpc_ardrone -lgthread-2.0 -lgtk-x11-2.0 -lrt -lxml2 -ludev -lswscale -lSDL -lm
 
 #ifeq ($(USE_ARDRONE_VISION),yes)
 #   GENERIC_LIBS+=-lpc_vision
@@ -170,7 +170,7 @@ export GENERIC_TARGET_BINARIES_PREFIX
 export GENERIC_TARGET_BINARIES_DIR
 export GENERIC_BINARIES_SOURCE_ENTRYPOINTS
 
-	
+
 
 # Bug fix ...
 export GENERIC_LIBRARY_SOURCE_DIR=$(GENERIC_BINARIES_SOURCE_DIR)
@@ -182,7 +182,7 @@ all: print_title build_libs $(TARGET)
 print_title:
 	@if [ '$(MAKECMDGOALS)' != 'clean' ]; then echo "$(BLUE_COLOR)-- Building $(TARGET) -- $(NO_COLOR)"; fi
 
-$(TARGET): 
+$(TARGET):
 	@if [ '$(MAKECMDGOALS)' != 'clean' ]; then echo "$(GREEN_COLOR)-- Linking $(TARGET) --$(NO_COLOR)"; fi
 	@$(MAKE) -C $(SDK_PATH)/VP_SDK/Build $(TMP_SDK_FLAGS) $(SDK_FLAGS) $(MAKECMDGOALS)
 	mv $(GENERIC_TARGET_BINARIES_DIR)/$(COMMON_MOB_SRC_PATH)/mobile_main $(TARGET)
@@ -197,7 +197,7 @@ $(MAKECMDGOALS): build_libs
 	@if [ '$(MAKECMDGOALS)' != 'clean' ]; then echo "$(GREEN_COLOR)Compiling navigation sources$(NO_COLOR)"; fi
 	@$(MAKE) -C $(SDK_PATH)/VP_SDK/Build $(TMP_SDK_FLAGS) $(SDK_FLAGS) $(MAKECMDGOALS)
 
-build_libs: 
+build_libs:
 ifeq ($(WIIMOTE_SUPPORT),yes)
 	$(info Compiling Navigation with Wiimote)
 endif
